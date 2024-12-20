@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Corridas de Táxi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Link para Font Awesome -->
+    <style>
+        :root {
+            --primary-color: #f0faf2;
+            --secondary-color: #000000;
+            --bg-color: #6a40e9;
+            --text-color: #d46f10;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            background-image: url('imagem/natur.jpg'); /* Alterado para a nova imagem de fundo */
+            background-size: cover; /* Faz a imagem cobrir toda a tela */
+            background-position: center; /* Centraliza a imagem de fundo */
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: rgb(5, 4, 4);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .carousel {
+            margin: 3rem auto 2rem auto; /* Adiciona espaçamento superior de 3rem */
+            max-width: 600px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(179, 7, 7, 0.1);
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-images img {
+            width: 100%;
+            flex-shrink: 0;
+        }
+
+        .carousel-buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 0.5rem;
+        }
+
+        .carousel-button {
+            width: 15px;
+            height: 15px;
+            margin: 0 5px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .carousel-button.active {
+            background-color: var(--primary-color);
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgb(18, 16, 16);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: rgb(23, 5, 5);
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: darkgreen;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1rem;
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .social-icons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            font-size: 2rem;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            color: rgb(78, 35, 236);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Sistema de Corridas de Táxi</h1>
+    </header>
+
+    <div class="carousel">
+        <div class="carousel-images">
+            <img src="imagem/images.png" alt="Carro 1">
+            <img src="imagem/Taxi.jpg" alt="Carro 2">
+            <img src="imagem/TAXI.webp" alt="Carro 3">
+        </div>
+        <div class="carousel-buttons">
+            <div class="carousel-button active" data-index="0"></div>
+            <div class="carousel-button" data-index="1"></div>
+            <div class="carousel-button" data-index="2"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Solicitação de Corrida</h2>
+        <form>
+            <div class="form-group">
+                <label for="nome">Nome do Passageiro:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="Ex.: (11) 98765-4321" pattern="\(\d{2}\) \d{5}-\d{4}" required>
+                <small>Formato esperado: (11) 98765-4321</small>
+            </div>
+
+            <div class="form-group">
+                <label for="endereco_origem">Endereço de Origem:</label>
+                <textarea id="endereco_origem" name="endereco_origem" placeholder="Digite o local de partida" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="endereco_destino">Endereço de Destino:</label>
+                <textarea id="endereco_destino" name="endereco_destino" placeholder="Digite o local de destino" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="horario">Horário da Corrida:</label>
+                <input type="datetime-local" id="horario" name="horario" required>
+            </div>
+
+            <div class="form-group">
+                <label for="tipo_corrida">Tipo de Corrida:</label>
+                <select id="tipo_corrida" name="tipo_corrida">
+                    <option value="normal">Normal</option>
+                    <option value="luxo">Luxo</option>
+                    <option value="compartilhada">Compartilhada</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn">Solicitar Corrida</button>
+        </form>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 - Serviço de Táxi Integrado</p>
+        <div class="social-icons">
+            <a href="https://wa.me/55119987654321" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/SeuPerfil" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
+        </div>
+    </footer>
+
+    <script>
+        const carouselImages = document.querySelector('.carousel-images');
+        const buttons = document.querySelectorAll('.carousel-button');
+
+        buttons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+                document.querySelector('.carousel-button.active').classList.remove('active');
+                button.classList.add('active');
+                carouselImages.style.transform = `translateX(-${index * 100}%)`;
+            });
+        });
+
+        document.getElementById('telefone').addEventListener('input', function (e) {
+            let input = e.target.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+            if (input.length > 11) input = input.slice(0, 11); // Limita a 11 números
+
+            // Aplica a formatação (11 números: (XX) XXXXX-XXXX)
+            let formatted = '';
+            if (input.length > 0) formatted = '(' + input.slice(0, 2);
+            if (input.length >= 3) formatted += ') ' + input.slice(2, 7);
+            if (input.length >= 7) formatted += '-' + input.slice(7, 11);
+
+            e.target.value = formatted;
+        });
+    </script>
+</body>
+</html>
